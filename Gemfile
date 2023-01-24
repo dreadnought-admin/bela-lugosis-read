@@ -48,3 +48,7 @@ end
 
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+
+gem 'byebug'
