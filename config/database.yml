@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: bela_lugosis_read_production
-  username: bela_lugosis_read
-  password: <%= ENV["BELA_LUGOSIS_READ_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
