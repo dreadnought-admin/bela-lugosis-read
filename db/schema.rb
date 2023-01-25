@@ -43,10 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_204457) do
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "poem_id", null: false
-    t.bigint "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_favorites_on_book_id"
     t.index ["poem_id"], name: "index_favorites_on_poem_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -77,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_204457) do
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "poems"
   add_foreign_key "comments", "users"
-  add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "poems"
   add_foreign_key "favorites", "users"
   add_foreign_key "poems", "users"

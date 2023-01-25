@@ -1,17 +1,14 @@
 require 'faker'
 require 'byebug'
 
-puts "Seeding data..."
-
-User.destroy_all
-Poem.destroy_all
-Book.destroy_all
+puts "Seeding users..."
 
 u1 = User.create(username: "Peter Steele", email: Faker::Internet.email, password_digest: "password", avatar: nil)
 u2 = User.create(username: "Robert Smith", email: Faker::Internet.email, password_digest: "itsfridayiminlove", avatar: nil)
 u3 = User.create(username: "Siouxsie Sioux", email: Faker::Internet.email, password_digest: "arabiannights3", avatar: nil)
 u4 = User.create(username: "Bela Lugosi", email: Faker::Internet.email, password_digest: "imdeadimdeadimdead", avatar: nil)
 
+puts "Seeding poems..."
 
 p1 = Poem.create(user_id: u1.id, title: "Alone", author: "Edgar Allan Poe", poem_type: "AABB", genre: "Gothic", year_published: 1829, poem_txt: "From childhood’s hour I have not been
     As others were—I have not seen
@@ -248,6 +245,8 @@ p4 = Poem.create(user_id: u4.id, title: "Ariel", author: "Sylvia Plath", poem_ty
     Eye, the cauldron of morning."
     )
 
+    puts "Seeding book..."
+
 b1 = Book.create!(user_id: u4.id, title: "Dracula", author: "Bram Stoker", year_published: 1897, genre: "Gothic", cover_img: "https://wendyvancamp.files.wordpress.com/2014/10/dracula-book-cover.jpg", 
     summary: "Dracula is a novel by Bram Stoker, published in 1897. 
     An epistolary novel, the narrative is related through letters, diary entries, and newspaper articles. 
@@ -255,9 +254,39 @@ b1 = Book.create!(user_id: u4.id, title: "Dracula", author: "Bram Stoker", year_
     business trip to stay at the castle of a Transylvanian nobleman, Count Dracula."
 )
 
+b2 = Book.create!(user_id: u1.id, title: "Strange Case of Dr. Jekyll and Mr. Hyde", author: "Robert Louis Stevenson", year_published: 1886, genre: "Gothic", cover_img: "https://www.gutenberg.org/files/43/43-h/images/cover.jpg", 
+    summary: "Strange Case of Dr Jekyll and Mr Hyde is a 1886 Gothic novella by Scottish author Robert Louis Stevenson. 
+    It follows Gabriel John Utterson, a London-based legal practitioner who investigates a series of strange occurrences
+    between his old friend Dr. Henry Jekyll and a murderous criminal named Edward Hyde.
 
-puts b1.user_id
+    Strange Case of Dr Jekyll and Mr Hyde is one of the most famous pieces of English literature, 
+    and is considered to be a defining book of the gothic horror genre. 
+    The novella has also had a sizable impact on popular culture, with the phrase 
+    'Jekyll and Hyde' being used in vernacular to refer to people with an outwardly good but 
+    sometimes shockingly evil nature."
+)
 
+b3 = Book.create!(user_id: u3.id, title: "The Castle of Otranto", author: "Horace Walpol", year_published: 1764, genre: "Gothic", cover_img: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781625580023/the-castle-of-otranto-9781625580023_hr.jpg", 
+    summary: "Walpole presents The Castle of Otranto as the English translation of a recently discovered manuscript. 
+    The preface to the first edition suggests that the manuscript was written sometime between 1095 and 1243 
+    (during the Crusades), “or not long afterwards,” and subsequently printed in Naples in 1529. The manuscript 
+    tells the story of Manfred, a prince of Otranto. At the beginning of the story, Manfred impatiently awaits 
+    the marriage of his sickly son, Conrad, to the princess Isabella. Manfred’s subjects note his impatience. 
+    They suspect that Manfred has arranged the marriage in the hope of avoiding an ancient prophecy that predicted his
+    castle and his rulership of Otranto “should pass from the present family, whenever the real owner should be grown 
+    too large to inhabit it.”"
+)
+
+puts "Seeding favorites..."
+
+Favorite.create!([
+    { user_id: u1.id, poem_id: p2.id }, 
+    { user_id: u4.id, poem_id: p3.id }, 
+    { user_id: u3.id, poem_id: p4.id },
+    { user_id: u2.id, poem_id: p4.id },
+    { user_id: u3.id, poem_id: p1.id },
+    { user_id: u1.id, poem_id: p3.id } ]
+)
 
 puts 'Seeding favorite poems...'
 
